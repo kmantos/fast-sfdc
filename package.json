@@ -30,6 +30,12 @@
   ],
   "main": "./dist/extension",
   "contributes": {
+    "jsonValidation": [
+      {
+        "fileMatch": ".sfdy.json",
+        "url": "./src/json-schemas/sfdy.json"
+      }
+    ],
     "keybindings": [
       {
         "command": "FastSfdc.deploySingle",

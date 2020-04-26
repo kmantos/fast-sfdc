@@ -1,0 +1,361 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The Root Schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "additionalProperties": true,
+    "properties": {
+        "permissionSets": {
+            "$id": "#/properties/permissionSets",
+            "type": "object",
+            "description": "Permissionsets patches",
+            "default": {},
+            "additionalProperties": true,
+            "properties": {
+                "stripUselessFls": {
+                    "$id": "#/properties/permissionSets/properties/stripUselessFls",
+                    "type": "boolean",
+                    "title": "The Stripuselessfls Schema",
+                    "description": "if stripUselessFls is true, fieldPermissions in which both readable and editable tags are false are removed from the XML. They are totally redundand since a PermissionSet can only add permissions.",
+                    "default": true
+                }
+            }
+        },
+        "objectTranslations": {
+            "$id": "#/properties/objectTranslations",
+            "type": "object",
+            "description": "objectTranslations patches",
+            "default": {},
+            "additionalProperties": true,
+            "properties": {
+                "stripUntranslatedFields": {
+                    "$id": "#/properties/objectTranslations/properties/stripUntranslatedFields",
+                    "type": "boolean",
+                    "description": "if stripUntranslatedFields is true, untranslated tags are removed from the XML.",
+                    "default": true
+                },
+                "stripNotVersionedFields": {
+                    "$id": "#/properties/objectTranslations/properties/stripNotVersionedFields",
+                    "type": "boolean",
+                    "description": "if stripNotVersionedFields is true, translated fields that are not present in the file system in the corresponding .object files, are removed from the XML",
+                    "default": true
+                }
+            }
+        },
+        "preDeployPlugins": {
+            "$id": "#/properties/preDeployPlugins",
+            "type": "array",
+            "title": "The Predeployplugins Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    "build-scripts/sfdy/patch-metadata.js"
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/preDeployPlugins/items",
+                "type": "string",
+                "title": "The Items Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                    "build-scripts/sfdy/patch-metadata.js"
+                ]
+            }
+        },
+        "postRetrievePlugins": {
+            "$id": "#/properties/postRetrievePlugins",
+            "type": "array",
+            "title": "The Postretrieveplugins Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                []
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/postRetrievePlugins/items",
+                "type": "null",
+                "title": "The Items Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": null,
+                "examples": [
+                    null
+                ]
+            }
+        },
+        "renderers": {
+            "$id": "#/properties/renderers",
+            "type": "array",
+            "title": "The Renderers Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    "build-scripts/sfdy/renderer.js"
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/renderers/items",
+                "type": "string",
+                "title": "The Items Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                    "build-scripts/sfdy/renderer.js"
+                ]
+            }
+        },
+        "profiles": {
+            "$id": "#/properties/profiles",
+            "type": "object",
+            "title": "The Profiles Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "addExtraTabVisibility": [
+                        "standard-*"
+                    ],
+                    "stripUserPermissionsFromStandardProfiles": true,
+                    "stripUnversionedStuff": true,
+                    "addExtraApplications": [
+                        "standard__*"
+                    ],
+                    "addDisabledVersionedObjects": true,
+                    "addExtraObjects": [
+                        "*",
+                        "!*__?",
+                        "!CommSubscription*",
+                        "!ContactPoint*"
+                    ],
+                    "addAllUserPermissions": false
+                }
+            ],
+            "additionalProperties": true,
+            "required": [
+                "addAllUserPermissions",
+                "addDisabledVersionedObjects",
+                "addExtraObjects",
+                "addExtraTabVisibility",
+                "addExtraApplications",
+                "stripUserPermissionsFromStandardProfiles",
+                "stripUnversionedStuff"
+            ],
+            "properties": {
+                "addAllUserPermissions": {
+                    "$id": "#/properties/profiles/properties/addAllUserPermissions",
+                    "type": "boolean",
+                    "title": "The Addalluserpermissions Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        false
+                    ]
+                },
+                "addDisabledVersionedObjects": {
+                    "$id": "#/properties/profiles/properties/addDisabledVersionedObjects",
+                    "type": "boolean",
+                    "title": "The Adddisabledversionedobjects Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "addExtraObjects": {
+                    "$id": "#/properties/profiles/properties/addExtraObjects",
+                    "type": "array",
+                    "title": "The Addextraobjects Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        [
+                            "*",
+                            "!*__?",
+                            "!CommSubscription*"
+                        ]
+                    ],
+                    "additionalItems": true,
+                    "items": {
+                        "$id": "#/properties/profiles/properties/addExtraObjects/items",
+                        "type": "string",
+                        "title": "The Items Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "*",
+                            "!*__?",
+                            "!CommSubscription*"
+                        ]
+                    }
+                },
+                "addExtraTabVisibility": {
+                    "$id": "#/properties/profiles/properties/addExtraTabVisibility",
+                    "type": "array",
+                    "title": "The Addextratabvisibility Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        [
+                            "standard-*"
+                        ]
+                    ],
+                    "additionalItems": true,
+                    "items": {
+                        "$id": "#/properties/profiles/properties/addExtraTabVisibility/items",
+                        "type": "string",
+                        "title": "The Items Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "standard-*"
+                        ]
+                    }
+                },
+                "addExtraApplications": {
+                    "$id": "#/properties/profiles/properties/addExtraApplications",
+                    "type": "array",
+                    "title": "The Addextraapplications Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        [
+                            "standard__*"
+                        ]
+                    ],
+                    "additionalItems": true,
+                    "items": {
+                        "$id": "#/properties/profiles/properties/addExtraApplications/items",
+                        "type": "string",
+                        "title": "The Items Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "standard__*"
+                        ]
+                    }
+                },
+                "stripUserPermissionsFromStandardProfiles": {
+                    "$id": "#/properties/profiles/properties/stripUserPermissionsFromStandardProfiles",
+                    "type": "boolean",
+                    "title": "The Stripuserpermissionsfromstandardprofiles Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "stripUnversionedStuff": {
+                    "$id": "#/properties/profiles/properties/stripUnversionedStuff",
+                    "type": "boolean",
+                    "title": "The Stripunversionedstuff Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                }
+            }
+        },
+        "roles": {
+            "$id": "#/properties/roles",
+            "type": "object",
+            "title": "The Roles Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "stripPartnerRoles": true
+                }
+            ],
+            "additionalProperties": true,
+            "required": [
+                "stripPartnerRoles"
+            ],
+            "properties": {
+                "stripPartnerRoles": {
+                    "$id": "#/properties/roles/properties/stripPartnerRoles",
+                    "type": "boolean",
+                    "title": "The Strippartnerroles Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                }
+            }
+        },
+        "stripManagedPackageFields": {
+            "$id": "#/properties/stripManagedPackageFields",
+            "type": "array",
+            "title": "The Stripmanagedpackagefields Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    "et4ae5"
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/stripManagedPackageFields/items",
+                "type": "string",
+                "title": "The Items Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                    "et4ae5"
+                ]
+            }
+        },
+        "staticResources": {
+            "$id": "#/properties/staticResources",
+            "type": "object",
+            "title": "The Staticresources Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "useBundleRenderer": [
+                        "VueApps.resource"
+                    ]
+                }
+            ],
+            "additionalProperties": true,
+            "required": [
+                "useBundleRenderer"
+            ],
+            "properties": {
+                "useBundleRenderer": {
+                    "$id": "#/properties/staticResources/properties/useBundleRenderer",
+                    "type": "array",
+                    "title": "The Usebundlerenderer Schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": [],
+                    "examples": [
+                        [
+                            "VueApps.resource"
+                        ]
+                    ],
+                    "additionalItems": true,
+                    "items": {
+                        "$id": "#/properties/staticResources/properties/useBundleRenderer/items",
+                        "type": "string",
+                        "title": "The Items Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "VueApps.resource"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
